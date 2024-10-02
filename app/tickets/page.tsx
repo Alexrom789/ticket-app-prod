@@ -1,7 +1,12 @@
 import React from "react";
+import prisma from "@/prisma/db";
 
-function Tickets() {
+const Tickets = async () => {
+  const tickets = await prisma.ticket.findMany();
+
+  console.log("Tickets: ", tickets);
+
   return <div>Tickets</div>;
-}
+};
 
 export default Tickets;
