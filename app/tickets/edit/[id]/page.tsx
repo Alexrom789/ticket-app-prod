@@ -16,7 +16,6 @@ const EditTicket = async ({ params }: Props) => {
   });
 
   if (!ticket) {
-    console.log("IN HERE");
     return <p className="text-destructive">Ticket not found!</p>;
   }
   return <TicketForm ticket={ticket} />;
