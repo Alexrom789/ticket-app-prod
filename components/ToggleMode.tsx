@@ -13,23 +13,26 @@ const ToggleMode = () => {
     setMounted(true);
   }, []);
 
+  // Early return to avoid rendering on the server (before hydration)
   if (!mounted) {
     return <Button variant="outline" size="icon"></Button>;
   }
 
-  const dark = theme === "dark";
-  <Button
-    variant="outline"
-    size="icon"
-    disabled
-    onClick={() => setTheme(`${dark ? "light" : "dark"}`)}
-  >
-    {dark ? (
-      <Sun className="hover:cursor-pointer hover:text-primary" />
-    ) : (
-      <Moon className="hover:cursor-pointer hover:text-primary" />
-    )}
-  </Button>;
+  const isDark = theme === "dark";
+
+  return (
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+    >
+      {isDark ? (
+        <Sun className="hover:cursor-pointer hover:text-primary" />
+      ) : (
+        <Moon className="hover:cursor-pointer hover:text-primary" />
+      )}
+    </Button>
+  );
 };
 
 export default ToggleMode;
